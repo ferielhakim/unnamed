@@ -9,34 +9,27 @@ typedef struct pers//personnage + enigme
 {
  SDL_Surface* pers;
  SDL_Rect perspos;
- int enigme1;
- int enigme2;
- int enigme3;
- int vie=1;//c'est pour un test 
+ int vie;//c'est pour un test 
 
 }pers;
 //--------------------------------------------
-typedef struct back
+typedef struct map
 {
- SDL_Surface* back1;
- SDL_Surface* back2;
- SDL_Surface* back3;
- SDL_Surface* con;
- SDL_Surface* lost;
-
- SDL_Rect backpos1;
- SDL_Rect backpos2;
- SDL_Rect backpos3;
- SDL_Rect conpos;
- SDL_Rect lostpos;
-}back;
+ SDL_Surface back;
+ SDL_Rect backpos;
+}map;
 
 
 
 #ifndef TACHE1_H
 #define TACHE1_H
 
+void initialiser_Map(map* map);
+void afficher_Map(map map,SDL_Surface *ecran,pers*personnage,SDL_Rect camera,SDL_Rect destination);
 
-void initback( back* back);
-void affichage( back back,SDL_Surface* fenetre,per personnage);
+//void initback( back* back);
+//void affichage( back back,SDL_Surface* fenetre,pers personnage);
 #endif
+//*******************************
+
+

@@ -3,71 +3,41 @@
 //pour passer d'un backgroud(de niveau) à un autre il faut qu'un des personnage(deux personnages) resoud l'enigme
 
 
-void initback( back* back)
+void initback( map* map)
 {
 //creation background
-back1=IMG_Load("city.png");
-back2=IMG_Load("forest.png");
-back3=IMG_Load("beach.png");
-con3=IMG_Load("con.png");
-lost=IMG_Load("lost.png");
-
-backpos1->x=0;
-backpos1->y=0;
-
-backpos2->x=0;
-backpos2->y=0;
-
-backpos3->x=0;
-backpos3->y=0;
-
-conpos->x=0;
-conpos->y=0;
-
-lostpos->x=0;
-lostpos->y=0;
+(map->back)=IMG_Load("map.jpg");
+(map->backpos).x=0;
+(map->backpos).y=0;
 
 }
 
-void affichage( back back,SDL_Surface* fenetre,pers personnage,eni enigme)
+void afficher_Map(map map,SDL_Surface *ecran,pers*personnage,SDL_Rect camera,SDL_Rect destination)
 {
+personnage->vie=1;
 if(personnage->vie>0)
   {
-  if(personnage->enigme1==0)//personnage.enigme==0 sig si pers n'a pas resolu l'enigme 
-  {
-  SDL_BlitSurface(back1,NULL,fenetre,&backpos1);
+    SDL_BlitSurface(map.back, &camera, ecran, &destination);
   }
+SDL_Flip(ecran);
 
-  //de meme pour les autres
+}
 
-  else if (personnage->enigme1==1)//personnage.enigme==0 sig si pers a resolu l'enigme
-  {
-  SDL_BlitSurface(back2,NULL,fenetre,&backpos2);
-  }
-  else if (personnage->enigme2==0)
-  {
-  SDL_BlitSurface(back2,NULL,fenetre,&backpos3);
-  }
-  else if (personnage->enigme2==1)
-  {
-  SDL_BlitSurface(back3,NULL,fenetre,&backpos3);
-  }
-  else if (personnage->enigme3==0)
-  {
-  SDL_BlitSurface(back3,NULL,fenetre,&backpos3);
-  }
-  else if (personnage->enigme3==1)
-  {
-  SDL_BlitSurface(con,NULL,fenetre,&conpos);//il a gagné
-  }
-else 
+int main
 {
-SDL_BlitSurface(lost,NULL,fenetre,&lostpos);
-}
+//initiation de la video
+SDL_Init(SDL_INIT_VIDEO);
+if (SDL_Init(SDL_INIT_VIDEO))
+fprintf(stderr,"Error SDL : %s\n",SDL_GetError());
 
-}
+//creation fenetre
+SDL_Surface *fenetre=NULL;
+fenetre=SDL_SetVideoMode(400,563,32,SDL_HWSURFACE);
+
+SDL_FillRect(fenetre,NULL,SDL_MapRGB(fenetre->format,0,0,0));//pour remplir l'ecran
 SDL_Flip(fenetre);
 
+initback(map);
+afficher_Map(map,ecran,personnage, camera, destination);
+return 0;
 }
-
-
