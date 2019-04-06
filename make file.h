@@ -1,0 +1,1 @@
+prog: *.h*.c gcc -LSDL -LSDL_ttf -LSDL_image -LSDL_mixer -lm -o prog -g main.o:main.c gcc -c menu.c -gmap.o:map.c gcc -c map.c -gdraw.o:draw.c gcc -c draw.c gcc -c int.c -gplayer.o:player.c gcc -c player.c -ganimation.o:animation.c gcc -c animation.c -gsounds.o:sounds.c -gfront .o:front.c gcc -c frony.c -gclean: rm -fr *.omrproper:clean rn -f prog
